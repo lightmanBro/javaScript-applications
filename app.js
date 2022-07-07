@@ -1,19 +1,23 @@
 // BUDGET CONTROLLER
 var budgetrController = (function(){
 
-          var Expenses = function (id, description, value) {
-                    this.id = id;
-                    this.description = description;
-                    this.value = value;
-                    // if any method is needed then the methods will be put in the prototype of the Expense.
-          };
+          class Expenses {
+                    constructor(id, description, value) {
+                              this.id = id;
+                              this.description = description;
+                              this.value = value;
+                              // if any method is needed then the methods will be put in the prototype of the Expense.
+                    }
+          }
 
-          var Income =  function (id, description, value) {
-                    this.id = id;
-                    this.description = description;
-                    this.value = value;
-                    // if any method is needed then the methods will be put in the prototype of the Income.
-          };
+          class Income {
+                    constructor(id, description, value) {
+                              this.id = id;
+                              this.description = description;
+                              this.value = value;
+                              // if any method is needed then the methods will be put in the prototype of the Income.
+                    }
+          }
 
           var data = {
                     // this is where all of the data of both income and expenses is stored.
@@ -64,12 +68,16 @@ var budgetrController = (function(){
 
 
 } )();
-var Expenses = function (id, description, value) {
-          this.id = id;
-          this.description = description;
-          this.value = value;
-          // if any method is needed then the methods will be put in the prototype of the Expense.
-};
+
+class Expenses {
+          constructor(id, description, value) {
+                    this.id = id;
+                    this.description = description;
+                    this.value = value;
+                    // if any method is needed then the methods will be put in the prototype of the Expense.
+          }
+}
+
 // UI CONTROLLER
 var UIcontroller = (function(){
 
@@ -145,6 +153,6 @@ var controller = (function(budgetCtrl, UIctrl){
                     }
           };
 
-})(budgetrController, UIcontroller );
+})(budgetrController, UIcontroller);
 
 controller.init();
