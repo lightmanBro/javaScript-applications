@@ -41,9 +41,7 @@ var budgetrController = (function(){
                              // a unique number that we want to assign to a new item created which the new item will be the last item inside the array plus the new item added.
                              if (data.allItems[type].length > 0) {
                               ID = data.allItems[type][data.allItems[type].length - 1].id + 1;
-                             } else {
-                              ID = 0};
-                             
+                             } else {ID = 0};
 
                              // create a new item based on inc or exp type
                               if (type === 'exp') {
@@ -53,8 +51,7 @@ var budgetrController = (function(){
                               }
 
                              // after creating the new items then we need to store it inside our data structure using this array method
-
-                             // push the new item created into our data structure
+                             // push the new item created into our data structure with the variable name newItem
                              data.allItems[type].push(newItem);
 
                              // return the new element
@@ -65,18 +62,8 @@ var budgetrController = (function(){
                               console.log(data);
                     }
           }
-
-
 } )();
 
-class Expenses {
-          constructor(id, description, value) {
-                    this.id = id;
-                    this.description = description;
-                    this.value = value;
-                    // if any method is needed then the methods will be put in the prototype of the Expense.
-          }
-}
 
 // UI CONTROLLER
 var UIcontroller = (function(){
@@ -85,7 +72,7 @@ var UIcontroller = (function(){
                     inputType: '.add__type',
                     inputDescription: '.add__description',
                     inputValue : '.add__value',
-                    // buttons for the down modules
+                    // buttons from the down modules
                     inputBtn : '.add__btn',
 
           }
@@ -101,7 +88,7 @@ var UIcontroller = (function(){
                               };
                              
                     },
-                    // Exposing domstrings into the public
+                    // Exposing domstrings object to the public so that the below module can have an access to its properties.
                     getDomstrings: function(){
                               return DOMstrings;
                     }
