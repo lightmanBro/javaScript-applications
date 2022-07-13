@@ -147,7 +147,7 @@ var controller = (function(budgetCtrl, UIctrl){
                     document.addEventListener('keypress', function(event) {
                              if (event.key === 13 || event.which === 13){
                                        ctrlAddItem();
-                             }
+                             };
          
                     });
           };
@@ -169,7 +169,10 @@ var controller = (function(budgetCtrl, UIctrl){
                     //1. Get the field input data
                     input = UIcontroller.getinput(); 
 
-                    //2. Add the item to the budget controller
+
+                    // EVERYTHING INSIDE THIS STATEMENT SHOULD ONLY HAPPEN IF THE CONDITIONS INSIDE THE CODEBLOCK IS MET
+                    if (input.description !== '' && !isNaN(input.value) && input.value > 0) {
+                              //2. Add the item to the budget controller
                     // from the budgetcontroller module where the addItem method was created it was supposed to take 3 parameters and the data of the parameter are inside the budgetcontroller module but extended to this module and kept inside the (input) variable so from the input variable we can have an acess to the values.
                     newItem = budgetCtrl.addItem(input.type, input.description, input.value);
 
@@ -181,7 +184,9 @@ var controller = (function(budgetCtrl, UIctrl){
 
                     //5. Calculate and update budget
                     updateBudget();
-          }
+                    }
+                    
+          };
           return {
                     init : function() {
                               console.log('application has started');
