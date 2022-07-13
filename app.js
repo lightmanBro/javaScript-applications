@@ -85,7 +85,7 @@ var UIcontroller = (function(){
                               return {
                                         type : document.querySelector(DOMstrings.inputType).value, // will be either inc or exp
                                         description : document.querySelector(DOMstrings.inputDescription).value,
-                                        value : document.querySelector(DOMstrings.inputValue).value
+                                        value : parseFloat(document.querySelector(DOMstrings.inputValue).value)
                                         // these values will be returned by returning an object that contains the three properties e.g getinput.type... etc.
                               };
                              
@@ -108,9 +108,22 @@ var UIcontroller = (function(){
                               newHtml = newHtml.replace('%value%', obj.value);
                               
                               // then insert the HTML into the DOM.
-                              document.querySelector(element).insertAdjacentElement('beforeend', newHtml);
+                              document.querySelector(element).insertAdjacentHTML('beforeend', newHtml);
 
 
+                    },
+
+                    clesarFields: function() {
+                              var fields;
+                        fields = document.querySelectorAll(DOMstrings.inputDescription + ',' + DOMstrings.inputValue);
+                        // the queryselectorAll method returns what its used to select as a list rather than an array. A list is a bit similar to an Array but it does not have all the methods that an array has, so the solution is for us to convert the list to an array with the array method called slice() and what a slice does is to returned a copy of the array that it is called on. so we are tricking the method by passig a list into it so that it will still retunr an array.
+                        fieldsArr = Array.prototype.slice.call(fields);
+
+                        fieldsArr.forEach(function(current, index, array) { current.value = '';
+                              
+                        });
+                        // setting the focus back to the input description field
+                        fieldsArr[0].focus();
                     },
                     // Exposing domstrings object to the public so that the below module can have an access to its properties.
                     getDomstrings: function(){
@@ -137,6 +150,15 @@ var controller = (function(budgetCtrl, UIctrl){
                              }
          
                     });
+          };
+
+          var updateBudget = function() {
+
+                    //1. Calculate the budget
+
+                    //2. return the budget
+
+                    //3. Display the budget on the UI
           }
           
 
@@ -154,10 +176,11 @@ var controller = (function(budgetCtrl, UIctrl){
                     //3. Add the item to the UI
                     UIctrl.addListItem(newItem, input.type);
 
+                    //4. Clear the fields
+                    UIctrl.clesarFields()
 
-                    //4. Calculate the budget
-
-                    //5. Display the budget to the UI
+                    //5. Calculate and update budget
+                    updateBudget();
           }
           return {
                     init : function() {
